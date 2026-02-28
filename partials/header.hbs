@@ -1,0 +1,55 @@
+<header class="px-5 sm:px-6 bg-bgr text-typ whitespace-nowrap" data-header
+  x-init="$nextTick(() => { initDropdown($el, 'z-50 min-w-[calc(100%_+_24px)] absolute top-0 flex flex-col gap-0.5 shadow-2xl rounded-theme bg-bgr py-2 px-1.5 -ml-2 mt-11 opacity-0 invisible translate-y-1 transition-all') })"
+>
+  <div class="max-w-site mx-auto py-4 md:py-6 flex items-center justify-center gap-2 relative">
+
+    {{!-- Brand --}}
+    <div class="flex-1 flex justify-start" data-header-brand>
+      <a class="" href="{{@site.url}}" data-brand>
+        {{> logo loading="eager"}}
+      </a>
+    </div>
+
+    {{!-- Navigation --}}
+    <nav class="relative hidden text-sm md:flex justify-center [&_.is-mainitem]:pr-3 [&_.is-mainitem_a]:pr-0" data-nav="header">
+      {{navigation 
+        ul_class="flex gap-0.5"
+        li_class="flex items-center relative hover:bg-bgr-tone rounded-theme"
+        a_class="w-full flex px-4 py-2 rounded-theme"
+      }}
+    </nav>
+
+    {{!-- Actions --}}
+    <div class="flex gap-1 items-center" data-header-actions>
+
+      {{!-- Search button --}}
+      <button class="flex items-center justify-center rounded-theme size-8 md:size-9 hover:bg-bgr-tone cursor-pointer" data-ghost-search title="{{t "Search"}}" aria-label="{{t "Search"}}">
+        {{> icon name="search" icon_class="size-5 stroke-2 fill-bgr-tone [&>svg]:fill-inherit"}}
+      </button>
+
+      {{!-- Member/User button --}}
+      {{#if @member}}
+        <button class="relative flex items-center justify-center size-8 md:size-9 hover:bg-bgr-tone cursor-pointer rounded-theme" data-portal="account" aria-label="{{@member.name}}">
+          {{#if @member.avatar_image}}
+            <img class="relative size-7 md:size-8 rounded-theme z-[2]" 
+                src="{{@member.avatar_image}}"
+                alt="{{@member.name}}">
+          {{/if}}
+          {{>icon name="user" icon_class="absolute z-1 size-5 stroke-2 inset-1.5 md:inset-2"}}
+        </button>
+      {{/if}}
+
+      {{!-- Menu button --}}
+      <button class="flex flex-col items-center gap-1 size-8 p-1 md:p-2 md:size-9 justify-center rounded-theme group md:hidden transition-transform hover:bg-bgr-tone cursor-pointer" 
+        data-menu-toggle aria-label="{{t "Menu toggle"}}" aria-expanded="false" aria-haspopup="true" aria-controls="menu"
+        @click="menuOpen = !menuOpen" :aria-expanded="menuOpen.toString()"
+      >
+        <span class="relative pointer-events-none h-0.5 rounded-sm bg-typ w-4 transition-transform"
+              :class="menuOpen ? 'rotate-45 translate-y-0.75' : ''"></span>
+        <span class="relative pointer-events-none h-0.5 rounded-sm bg-typ w-4 transition-transform"
+              :class="menuOpen ? '-rotate-45 -translate-y-0.75' : ''"></span>
+      </button>
+    </div>
+
+  </div>
+</header>

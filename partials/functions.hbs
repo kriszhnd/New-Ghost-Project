@@ -1,0 +1,31 @@
+<script>
+/* -----------------------------------------------------------------------------
+* getContrastColor
+----------------------------------------------------------------------------- */
+function getContrastColor(hexColor) {
+  if (!hexColor || typeof hexColor !== 'string') {
+    throw new Error('A hex color string is required');
+  }
+  
+  const hex = hexColor.replace('#', '');
+  if (!/^[0-9A-Fa-f]{6}$/.test(hex)) {
+      throw new Error('Invalid hex color format');
+  }
+  
+  const r = parseInt(hex.slice(0, 2), 16);
+  const g = parseInt(hex.slice(2, 4), 16);
+  const b = parseInt(hex.slice(4, 6), 16);
+  
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return luminance > 0.5 ? '#000000' : '#ffffff';
+}
+
+/* -----------------------------------------------------------------------------
+* setBrandContrast
+----------------------------------------------------------------------------- */
+function setBrandContrast() {
+  const hexColor = getComputedStyle(document.documentElement).getPropertyValue('--ghost-accent-color').trim();
+  
+  document.documentElement.style.setProperty('--color-brand-contrast', `color-mix(in srgb, var(--color-brand) 10%, ${getContrastColor(hexColor)} 100%)`);
+}
+</script>

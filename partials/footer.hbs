@@ -1,0 +1,14 @@
+<footer class="px-5 sm:px-6 mt-16" data-footer>
+  <div class="max-w-site mx-auto">
+    {{!-- Copy & Color scheme --}}
+    <div class="py-4 md:py-6 flex flex-wrap items-center gap-2 relative border-t border-brd">
+      <div class="text-sm text-typ-tone">
+        <span data-footer-date>&copy;{{date format="YYYY"}}&nbsp;{{#link href=@site.url class="hover:text-typ"}}{{@site.title}}{{/link}}.</span>
+        <span data-footer-ghost>{{t "Published with"}}&nbsp;{{#link href="https://ghost.org" class="hover:text-typ"}}Ghost{{/link}}</span>
+        <span data-footer-theme>&&nbsp;{{#link href="https://brightthemes.com/themes/skeleton" class="hover:text-typ"}}Skeleton{{/link}}.</span>
+      </div>
+
+      {{> toggle-color-scheme}}
+    </div>
+  </div>
+</footer>

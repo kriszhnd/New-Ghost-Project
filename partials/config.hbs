@@ -1,0 +1,53 @@
+{{!-- Theme Config --}}
+<script>
+  const THEME_CONFIG = {
+    SITE_URL: '{{@site.url}}',
+    CONTENT_API_URL: '{{content_api_url}}',
+    CONTENT_API_KEY: '{{content_api_key}}',
+    ENABLE_IMAGE_ZOOM: true,
+    POSTS_PER_PAGE: parseInt('{{@config.posts_per_page}}'),
+    PAGINATION: {
+      CURRENT_PAGE: parseInt('{{pagination.page}}'),
+      NEXT_PAGE: parseInt('{{pagination.next}}'),
+      NEXT_PAGE_LINK: '',
+      MAX_PAGES: parseInt('{{pagination.pages}}'), 
+      LAST_PAGE: `{{pagination.page}}` === `{{pagination.pages}}` ? true : false,
+      TOTAL: parseInt('{{pagination.total}}')
+    }
+  }
+
+  const MEMBER = {
+    LOGGED_IN: {{#if @member}}true,{{else}}false{{/if}}
+    {{#if @member}}
+      UUID: '{{@member.uuid}}',
+      FIRSTNAME: '{{@member.firstname}}',
+      NAME: '{{@member.name}}',
+      EMAIL: '{{@member.email}}',
+      PAID: {{#if @member.paid}}true{{else}}false{{/if}},
+      STATUS: '{{@member.status}}',
+    {{/if}}
+    {{#if @member.subscriptions}}
+      TIERS: [
+        {{#foreach @member.subscriptions}}
+          {{#unless @first}}, {{/unless}}{ 
+            'id': '{{tier.id}}',
+            'name': '{{tier.name}}',
+            'status': '{{status}}',
+          }
+        {{/foreach}}
+      ]
+    {{/if}}
+  }
+</script>
+
+{{!-- Color scheme --}}
+<script>
+function getColorScheme() {
+  const pref = localStorage.getItem('PREFERRED_COLOR_SCHEME') || '{{@custom.color_scheme}}';
+  return pref === 'system' 
+    ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+    : pref;
+}
+/* To avoid flickering, we set the color scheme in the head tag */
+document.documentElement.setAttribute('data-color-scheme', getColorScheme());
+</script>

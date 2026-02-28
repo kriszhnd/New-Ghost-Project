@@ -1,0 +1,9 @@
+<button class="flex p-0.5 border border-brd text-typ rounded-btn bg-bgr-tone hover:bg-bgr-tone cursor-pointer relative before:content-[''] before:absolute before:rounded-btn before:bg-bgr before:z-0 before:w-1/2 before:h-[calc(100%_-_2px)] before:top-0.25" :class="colorScheme === 'light' ? 'before:left-0.25' : 'before:right-0.25'" aria-label="{{t "Toggle color scheme"}}"
+  :data-color-scheme-toggle="colorScheme" @click="colorScheme = colorScheme === 'light' ? 'dark' : 'light'; localStorage.setItem('PREFERRED_COLOR_SCHEME', colorScheme);">
+  <span data-theme="light" class="z-1 px-1.5 py-0.75 opacity-30 rounded-btn" :class="colorScheme === 'light' ? 'opacity-100' : 'opacity-30'">
+    {{> icon name="sun" icon_class="size-4"}}
+  </span>
+  <span data-theme="dark" class="z-1 px-1.5 py-0.75 opacity-30 rounded-btn" :class="colorScheme === 'dark' ? 'opacity-100' : 'opacity-30'">
+    {{> icon name="moon" icon_class="size-4"}}
+  </span>
+</button>

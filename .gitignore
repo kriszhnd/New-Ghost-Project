@@ -1,0 +1,15 @@
+# Logs
+logs
+*.log
+
+# Dependency directories
+npm-debug.log
+node_modules
+
+# Generated Dir
+dist/*
+assets/built/*
+
+# OS Files
+.DS_Store
+**/.DS_Store

@@ -1,0 +1,11 @@
+{{!< default}}
+
+<section class="px-5 sm:px-6">
+  <div class="max-w-site mx-auto">
+    {{#foreach posts}}
+      <article class="py-6">
+        <h2><a href="{{url}}">{{title}}</a></h2>
+      </article>
+    {{/foreach}}
+  </div>
+</section>

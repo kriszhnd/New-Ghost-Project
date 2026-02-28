@@ -1,0 +1,17 @@
+{{!< default}}
+
+{{#page}}
+  {{!-- Hero section --}}
+  {{#match @page.show_title_and_feature_image}} 
+    <section class="px-5 sm:px-6 my-8">
+      <div class="max-w-content mx-auto">
+        <h1 class="text-center font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl">{{title}}</h1>
+      </div>
+    </section>
+  {{/match}}
+  
+  {{!-- Content --}}
+  <article class="{{post_class}} ghost-content prose md:prose-lg prose-theme"{{#unless access}} data-preview{{/unless}}>
+    {{content}}
+  </article>
+{{/page}}
